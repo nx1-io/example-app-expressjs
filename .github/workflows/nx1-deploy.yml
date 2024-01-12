@@ -1,0 +1,64 @@
+---
+
+    name: NX1 Deploy
+    run-name: Deploy test1 to self-contained-ohio-dev1 (us-east-2/481313360369) by @${{ github.actor }}
+    
+    on:
+      workflow_dispatch:
+    
+    permissions:
+      id-token: write
+      contents: read
+    
+    jobs:
+      deploy:
+        runs-on: ubuntu-latest
+        name: NX1 Deploy
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v3
+    
+          # Optional step: Detect app and construct Dockerfile using Nixpacks
+          - name: NX1 Build with Nixpacks
+            uses: citadel-runcloud/dev-composite-action@main
+            with:
+              operation: 'build-nixpacks'
+    
+          - name: NX1 Prepare Deployment
+            uses: citadel-runcloud/dev-composite-action@main
+            with:
+              operation: 'prepare'
+              app_id: 9acfc1ad-79cb-4338-b6f8-91411082b51c
+              api_url: 'https://dev-app.citadel.run/api'
+              api_token: ${{ secrets.EXAMPLE_EXPRESS_JS }}
+              env_id: 4c902cae-c43f-4be0-83b6-0df7173f8184
+    
+          - run: |
+              cat copilot/schedule/manifest.yml
+    
+          - name: NX1 Assume Role
+            uses: citadel-runcloud/dev-composite-action@main
+            with:
+              operation: 'assume-role'
+    
+          # - name: NX1 Deploy Service web
+          #   uses: citadel-runcloud/dev-composite-action@main
+          #   with:
+          #     operation: 'deploy'
+          #     service: 'web'
+    
+          - name: NX1 Deploy Job schedule
+            uses: citadel-runcloud/dev-composite-action@main
+            with:
+              operation: 'deploy'
+              job: 'schedule'
+    
+          # Optional step: Migrate database
+          - name: NX1 Migrate Service web
+            uses: citadel-runcloud/dev-composite-action@main
+            with:
+              operation: 'run'
+              service: 'web'
+              command: 'php artisan schedule:run' # replace with your migration command
+    
+    # rev:1

@@ -38,18 +38,18 @@
             with:
               operation: 'assume-role'
     
-          - name: NX1 Deploy Service - test-lb
+          - name: NX1 Deploy Service - example-express-js
             uses: nx1-io/app-copilot-action@main
             with:
               operation: 'deploy'
-              service: 'test-lb'
+              service: 'example-express-js'
     
           # Optional step: Migrate database
-          # - name: NX1 Migrate Service - test-lb
+          # - name: NX1 Migrate Service - example-express-js
           #   uses: nx1-io/app-copilot-action@main
           #   with:
           #     operation: 'run'
-          #     service: 'test-lb'
+          #     service: 'example-express-js'
           #     command: 'uname -a' # replace with your migration command
     
     

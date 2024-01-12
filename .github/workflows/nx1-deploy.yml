@@ -1,6 +1,6 @@
 ---
 
-    name: NX1 Deploy
+    name: NX1 Deploy - ExpressJS
     run-name: Deploy test1 to self-contained-ohio-dev1 (us-east-2/481313360369) by @${{ github.actor }}
     
     on:

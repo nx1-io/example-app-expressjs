@@ -1,57 +1,47 @@
----
+# Description: This file is used to define the deployment manifest for your application.
+# Remind to update the env_id and app_id with your target env and app id
 
-    name: NX1 Deploy - ExpressJS
-    run-name: Deploy app-xpta to nonprod-self-contained-ohio (us-east-2/852718040374) by @${{ github.actor }}
-  
-    on:
-      workflow_dispatch:
-    
-    permissions:
-      id-token: write
-      contents: read
-    
-    jobs:
-      deploy:
-        runs-on: ubuntu-latest
-        name: NX1 Deploy
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v3
-    
-          # Optional step: Detect app and construct Dockerfile using Nixpacks
-          - name: NX1 Build with Nixpacks
-            uses: nx1-io/app-copilot-action@main
-            with:
-              operation: 'build-nixpacks'
-    
-          - name: NX1 Prepare Deployment
-            uses: nx1-io/app-copilot-action@main
-            with:
-              operation: 'prepare'
-              app_id: 9b027592-4888-4a08-9a46-63ad79ab14d5
-              api_url: 'https://dev-app.citadel.run/api'
-              api_token: ${{ secrets.EXAMPLE_EXPRESS_JS }}
-              env_id: c0b2b5f6-83df-4926-8ab4-8ee1dfaff869
-    
-          - name: NX1 Assume Role
-            uses: nx1-io/app-copilot-action@main
-            with:
-              operation: 'assume-role'
-    
-          - name: NX1 Deploy Service - example-express-js
-            uses: nx1-io/app-copilot-action@main
-            with:
-              operation: 'deploy'
-              service: 'example-express-js'
-    
-          # Optional step: Migrate database
-          # - name: NX1 Migrate Service - example-express-js
-          #   uses: nx1-io/app-copilot-action@main
-          #   with:
-          #     operation: 'run'
-          #     service: 'example-express-js'
-          #     command: 'uname -a' # replace with your migration command
-    
-    
-    # rev:1
-    
+name: NX1 Deploy a Static Service (Example)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  deployments: write
+
+jobs:
+  static-example:
+    runs-on: ubuntu-latest
+    name: NX1 Action
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: NX1 Prepare Deployment
+        uses: nx1-io/dev-composite-action@main
+        with:
+          operation: 'prepare'
+          env_id: '6a5f5001-2732-4670-a46c-7a97813d0ebc' # @TODO: update with your target NX1 env id
+          app_id: '9b0b7b69-2e42-436b-ab81-98cebf72bd39' # @TODO: update with your NX1 app id
+          api_url: 'https://dev-app.citadel.run/api'
+          api_token: ${{ secrets.EXAMPLE_EXPRESS_JS }}
+
+      - name: NX1 Assume Role
+        uses: nx1-io/dev-composite-action@main
+        with:
+          operation: 'assume-role'
+
+      - name: NX1 Deploy Static Service
+        uses: nx1-io/dev-composite-action@main
+        with:
+          operation: 'deploy'
+          service: 'static-example' # @TODO: update with your NX1 service name

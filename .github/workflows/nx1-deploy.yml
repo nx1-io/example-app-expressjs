@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
 
       - name: NX1 Prepare Deployment
-        uses: nx1-io/dev-composite-action@main
+        uses: nx1-io/app-copilot-action@main
         with:
           operation: 'prepare'
           env_id: '6a5f5001-2732-4670-a46c-7a97813d0ebc' # @TODO: update with your target NX1 env id
@@ -36,12 +36,12 @@ jobs:
           api_token: ${{ secrets.EXAMPLE_EXPRESS_JS }}
 
       - name: NX1 Assume Role
-        uses: nx1-io/dev-composite-action@main
+        uses: nx1-io/app-copilot-action@main
         with:
           operation: 'assume-role'
 
       - name: NX1 Deploy Static Service
-        uses: nx1-io/dev-composite-action@main
+        uses: nx1-io/app-copilot-action@main
         with:
           operation: 'deploy'
           service: 'static-example' # @TODO: update with your NX1 service name

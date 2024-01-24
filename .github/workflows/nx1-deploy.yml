@@ -19,10 +19,10 @@
           uses: actions/checkout@v3
   
         # Optional step: Detect app and construct Dockerfile using Nixpacks
-        - name: NX1 Build with Nixpacks
-          uses: nx1-io/app-copilot-action@main
-          with:
-            operation: 'build-nixpacks'
+        # - name: NX1 Build with Nixpacks
+        #   uses: nx1-io/app-copilot-action@main
+        #   with:
+        #     operation: 'build-nixpacks'
   
         - name: NX1 Prepare Deployment
           uses: nx1-io/app-copilot-action@main

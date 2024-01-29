@@ -1,5 +1,44 @@
-extends layout
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Welcome to Your App
+    style.
+      body {
+        background-color: rgb(37, 30, 104);
+        margin: 100px;
+        padding: 0;
+        text-align: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        margin-top: 100px; 
+      }
+      p, h1, a {
+        color: #fffffe;
+      }
 
-block content
-  h1= title
-  p Welcome to #{title}
+  body
+    header
+      a(href="https://nx1.io")
+        img(src="https://assets-global.website-files.com/64c733db66ebf722f72bea5f/659b56a81b3593da28afb1f0_nx1-logo.svg", alt="NX1.io Logo")
+
+    main
+      .container
+        h1 Welcome to Your New App in Express JS!
+        p Learn more about building apps with 
+          a(href="https://expressjs.com/en/guide/routing.html") Express.js
+        p Explore the app and discover all the amazing features we have to offer.
+
+        // Additional content goes here
+
+    footer
+      p For more information about how to use NX1, 
+      p please visit our 
+        a(href="https://docs.nx1.io") Documentation 
+        span or the 
+        a(href="https://nx1.io") NX1.io Website 
+
+    

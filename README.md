@@ -38,9 +38,9 @@ With:
 
 **operation**: 'prepare'
 
-**app_id**: The application ID (in this case, 9b20993f-79df-4984-b1f1-756a929638ed).**Do not modify it**.
+**app_id**: The application ID.**Do not modify it**.
 
-**env_id**: The environment ID where the app will be deployed (here, c0b2b5f6-83df-4926-8ab4-8ee1dfaff869).**Do not modify it**. 
+**env_id**: The environment ID where the app will be deployed.**Do not modify it**. 
 
 **api_token**: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
 

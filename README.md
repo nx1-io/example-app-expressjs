@@ -26,43 +26,41 @@ This job runs on the latest Ubuntu runner and consists of several steps:
 
 #### 1.**Checkout code**:
 
-Action: actions
+- Action: actions
 
 Purpose: Checks out the repository code, allowing the workflow to access it.
 
 #### 2.**NX1 Prepare Deployment**:
 
-Action: Prepare
+- Action: Prepare
+- With:
 
-With:
+    - operation: 'prepare'
 
-operation: 'prepare'
+    - app_id: The application ID.**Do not modify it**.
 
-app_id: The application ID.**Do not modify it**.
+    - env_id: The environment ID where the app will be deployed.**Do not modify it**. 
 
-env_id: The environment ID where the app will be deployed.**Do not modify it**. 
-
-api_token: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
+    - api_token: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
 
 Purpose: Prepares the deployment environment for the ExpressJS app using the NX1 platform.
 
 #### 3.**NX1 Assume Role**:
 
-Action: nx1-io/app-copilot-action@main
-With:
-operation: 'assume-role'
+- Action: nx1-io/app-copilot-action@main
+- With:
+    - operation: 'assume-role'
 
 Purpose: Assumes the necessary role for deployment.
 
 #### 4.**NX1 Deploy Service - expressjs-app**:
 
-Action: nx1-io/app-copilot-action@main
+- Action: nx1-io/app-copilot-action@main
+- With:
 
-With:
+    - operation: 'deploy'
 
-operation: 'deploy'
-
-service: 'expressjs-app' (the name of the service to be deployed -**define it on NX1.io app**)
+    - service: 'expressjs-app' (the name of the service to be deployed -**define it on NX1.io app**)
 
 Purpose: Deploys the ExpressJS application to the specified environment.
 

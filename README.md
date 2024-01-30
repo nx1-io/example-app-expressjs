@@ -47,7 +47,7 @@ Purpose: Prepares the deployment environment for the ExpressJS app using the NX1
 
 #### 3.**NX1 Assume Role**:
 
-- Action: nx1-io/app-copilot-action@main
+- Action: `nx1-io/app-copilot-action@main`
 - With:
     - operation: 'assume-role'
 
@@ -55,7 +55,7 @@ Purpose: Assumes the necessary role for deployment.
 
 #### 4.**NX1 Deploy Service - expressjs-app**:
 
-- Action: nx1-io/app-copilot-action@main
+- Action: `nx1-io/app-copilot-action@main`
 - With:
 
     - operation: 'deploy'

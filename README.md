@@ -26,43 +26,45 @@ This job runs on the latest Ubuntu runner and consists of several steps:
 
 #### 1.**Checkout code**:
 
-Action: actions/checkout@v3
+Action: actions
 
-#### 2.**Purpose**: Checks out the repository code, allowing the workflow to access it.
+Purpose: Checks out the repository code, allowing the workflow to access it.
 
-NX1 Prepare Deployment:
+#### 2.**NX1 Prepare Deployment**:
 
-#### 3.**Action**: nx1-io/app-copilot-action@main
+Action: Prepare
 
 With:
 
-**operation**: 'prepare'
+operation: 'prepare'
 
-**app_id**: The application ID.**Do not modify it**.
+app_id: The application ID.**Do not modify it**.
 
-**env_id**: The environment ID where the app will be deployed.**Do not modify it**. 
+env_id: The environment ID where the app will be deployed.**Do not modify it**. 
 
-**api_token**: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
+api_token: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
 
-#### 4.**Purpose**: Prepares the deployment environment for the ExpressJS app using the NX1 platform.
-NX1 Assume Role:
+Purpose: Prepares the deployment environment for the ExpressJS app using the NX1 platform.
 
-#### 5.**Action**: nx1-io/app-copilot-action@main
+#### 3.**NX1 Assume Role**:
+
+Action: nx1-io/app-copilot-action@main
 With:
 operation: 'assume-role'
 
-#### 6.**Purpose**: Assumes the necessary role for deployment.
-NX1 Deploy Service - expressjs-app:
+Purpose: Assumes the necessary role for deployment.
 
-#### 7.**Action**: nx1-io/app-copilot-action@main
+#### 4.**NX1 Deploy Service - expressjs-app**:
+
+Action: nx1-io/app-copilot-action@main
 
 With:
 
-**operation**: 'deploy'
+operation: 'deploy'
 
-**service**: 'expressjs-app' (the name of the service to be deployed -**define it on NX1.io app**)
+service: 'expressjs-app' (the name of the service to be deployed -**define it on NX1.io app**)
 
-#### 8.**Purpose**: Deploys the ExpressJS application to the specified environment.
+Purpose: Deploys the ExpressJS application to the specified environment.
 
 ### Additional Notes
 

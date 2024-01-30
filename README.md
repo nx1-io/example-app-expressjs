@@ -4,32 +4,44 @@
 This GitHub workflow is designed for deploying an ExpressJS application using the NX1 platform. It is triggered manually and performs a series of steps to prepare, assume the necessary role, and deploy the ExpressJS application to a specified environment.
 
 ## Workflow Name
+
 **Name**: NX1 Deploy - ExpressJS App
 Run Name: This workflow will be logged as "Deploy example-expressjs-app to my environment by @<github_actor>" in the GitHub actions tab, where <github_actor> is the username of the person who triggered the run.
 
 ## Trigger
+
 **Manual (workflow_dispatch)**: This workflow is triggered manually. It does not run automatically on any code push or pull request event. It needs to be manually dispatched from the GitHub Actions tab in the repository.
 
 ## Permissions
+
 **id-token**: write: This workflow requires permissions to write an ID token for authentication purposes.
+
 contents: read: It also requires read access to the repository contents.
 
 ## Jobs
 
 ### Deploy
+
 This job runs on the latest Ubuntu runner and consists of several steps:
 
 #### 1.**Checkout code**:
+
 Action: actions/checkout@v3
 
 #### 2.**Purpose**: Checks out the repository code, allowing the workflow to access it.
+
 NX1 Prepare Deployment:
 
 #### 3.**Action**: nx1-io/app-copilot-action@main
+
 With:
+
 **operation**: 'prepare'
+
 **app_id**: The application ID (in this case, 9b20993f-79df-4984-b1f1-756a929638ed).**Do not modify it**.
+
 **env_id**: The environment ID where the app will be deployed (here, c0b2b5f6-83df-4926-8ab4-8ee1dfaff869).**Do not modify it**. 
+
 **api_token**: An API token for authentication, stored in GitHub secrets. Create your api_token on [NX1.io app](https://app.nx1.io/) or read the [documentation](https://docs.nx1.io/).
 
 #### 4.**Purpose**: Prepares the deployment environment for the ExpressJS app using the NX1 platform.
@@ -43,16 +55,22 @@ operation: 'assume-role'
 NX1 Deploy Service - expressjs-app:
 
 #### 7.**Action**: nx1-io/app-copilot-action@main
+
 With:
+
 **operation**: 'deploy'
+
 **service**: 'expressjs-app' (the name of the service to be deployed -**define it on NX1.io app**)
 
 #### 8.**Purpose**: Deploys the ExpressJS application to the specified environment.
 
 ### Additional Notes
- **Version**: This document corresponds to the first revision of the workflow (rev:1).
- **Security**: The workflow uses a secret (EXAMPLE_EXPRESS_JS) for the API token, ensuring security and confidentiality.
- **Customization**: To adapt this workflow for different applications or environments, modify the api_token.
+
+**Version**: This document corresponds to the first revision of the workflow (rev:1).
+
+**Security**: The workflow uses a secret (EXAMPLE_EXPRESS_JS) for the API token, ensuring security and confidentiality.
+
+**Customization**: To adapt this workflow for different applications or environments, modify the api_token.
 
 
 # Getting Started with Create ExpressJS App

@@ -3,8 +3,8 @@
 
 # Documentation for NX1 Deploy - App GitHub Workflow
 
-    ## Overview
-    This GitHub workflow is designed for deploying an ExpressJS application using the NX1 platform. It is triggered manually and performs a series of steps to prepare, assume the necessary role, and deploy the ExpressJS application to a specified environment.
+## Overview
+This GitHub workflow is designed for deploying an ExpressJS application using the NX1 platform. It is triggered manually and performs a series of steps to prepare, assume the necessary role, and deploy the ExpressJS application to a specified environment.
 
 ## Workflow Name
 
